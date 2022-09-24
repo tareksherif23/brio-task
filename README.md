@@ -26,13 +26,15 @@
 
 An Extendable Notifications mircoservice built using [Nest](https://github.com/nestjs/nest) framework to leverage robust architecture.
 
-This is a monorepo for two microservices each running in a separate Docker container:
+this is a monorepo for two microservices each running in a separate Docker container:
   - Notification microservice
   - Mock-Data microservice
 
-Communications between the two microservices are done through TCP
+mock objects are used in Mock-data microservice to provide user and company data, template objects are used in Notification microservice to provide extendable and persistable templates for different notification types
 
-For the persistence layer a MongoDB instance runs in a separate Docker container and Mongoose is used as the ODM within the applications
+communications between the two microservices are done through TCP
+
+for the persistence layer a MongoDB instance runs in a separate Docker container and Mongoose is used as the ODM within the applications
 
 Typegoose is used to easily define Mongoose models in Typescript and mitigate code duplication
 
@@ -60,6 +62,24 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+
+## Emdpoint usage example                      
+sendNotification:
+```
+-request: POST
+-url: http://localhost:3000/notifications
+-header: content-type: application/json
+-body: {
+  "companyId": "companyA",
+  "userId": "empA3",
+  "notificationType": "happy-birthday"
+}
+```
+getUiNotifications:
+```
+-request: GET
+-url: http://localhost:3000/notifications/ui?userId=empA3
 ```
 
 ## Test
