@@ -11,7 +11,7 @@ export class NotificationsController {
     return this.notificationsService.sendNotification(request)
   }
 
-  @Get()
+  @Get('/ui')
   async getUiNotifications(@Query('userId') userId){
     return this.notificationsService.getUiNotifications(userId)
   }
